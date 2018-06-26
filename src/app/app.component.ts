@@ -9,6 +9,9 @@ import { HomePage } from '../pages/home/home.page';
 import { SlideBoxPage } from '../pages/slide-box/slide-box.page';
 import { WordpressListPage } from '../pages/wordpress/list/wordpress.list.page';
 
+import { LoginPage } from '../pages/login/login';
+import { AuthService } from '../services/auth.service';
+
 @Component({
 	templateUrl: 'app.html'
 })
@@ -23,7 +26,8 @@ export class MyApp {
 		private platform: Platform,
 		private menu: MenuController,
 		private statusBar: StatusBar,
-	) {
+		private auth: AuthService ) {
+			
 		this.initializeApp();
 
 		// set our app's pages
@@ -32,16 +36,13 @@ export class MyApp {
 			{ title: 'Wordpress', component: WordpressListPage, icon: 'logo-wordpress' },
 			{ title: 'Slides', component: SlideBoxPage, icon: 'swap' },
 			{ title: 'Google maps', component: GoogleMapsPage, icon: 'map' },
-			{ title: 'Components', component: ComponentsListPage, icon: 'grid' }
+			{ title: 'Components', component: ComponentsListPage, icon: 'grid' },
+			{ title: 'Login', component: LoginPage, icon: 'log-in' }
 		];
-
-		this.rootPage = HomePage;
 	}
 
 	initializeApp() {
-		this.platform.ready().then(() => {
-			this.statusBar.styleDefault();
-		});
+		this.rootPage = LoginPage;
 	}
 
 	openPage(page) {

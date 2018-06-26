@@ -13,29 +13,45 @@ import { SlideBoxModule } from '../pages/slide-box/slide-box.module';
 import { WordpressModule } from '../pages/wordpress/wordpress.module';
 import { MyApp } from './app.component';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { firebaseConfig } from '../config';
+
+import { AuthService } from '../services/auth.service';
+import { LoginPage } from '../pages/login/login';
+import { SignupPage } from '../pages/signup/signup';
+
+import { NgxErrorsModule } from '@ultimate/ngxerrors';
+
 @NgModule({
 	declarations: [
-		MyApp
+		MyApp,
+		LoginPage,
+		SignupPage
 	],
 	imports: [
 		BrowserModule,
 		HttpModule,
 		IonicModule.forRoot(MyApp),
 		AgmCoreModule.forRoot(),
-
+		AngularFireModule.initializeApp(firebaseConfig.fire),
 		ComponentsModule,
 		GoogleMapsModule,
 		HomeModule,
 		SlideBoxModule,
-		WordpressModule
+		WordpressModule,
+		NgxErrorsModule
 	],
 	bootstrap: [IonicApp],
 	entryComponents: [
-		MyApp
+		LoginPage,
+		SignupPage
 	],
 	providers: [
 		Config,
-		StatusBar
+		StatusBar,
+		AngularFireAuth,
+		AuthService
 	]
 })
 export class AppModule {
