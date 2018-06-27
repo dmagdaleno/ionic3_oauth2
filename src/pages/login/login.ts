@@ -49,11 +49,11 @@ export class LoginPage {
   }
 
   loginWithGoogle() {
-	this.auth.signInWithGoogle()
-	  .then(
-		() => this.navCtrl.setRoot(HomePage),
-		error => console.log(error.message)
-	  );
+		this.auth.signInWithGoogle()
+			.then(
+				() => this.navCtrl.setRoot(HomePage),
+				error => this.loginError = error.message
+			);
   }
 
 }

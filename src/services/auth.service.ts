@@ -35,12 +35,12 @@ export class AuthService {
 		return this.user && this.user.email;
 	}
 
-	signInWithGoogle() {
+	signInWithGoogle(): Promise<any> {
 		console.log('Sign in with google');
 		return this.oauthSignIn(new firebase.auth.GoogleAuthProvider());
 	}
 
-	private oauthSignIn(provider: AuthProvider) {
+	private oauthSignIn(provider: AuthProvider): Promise<any> {
 		if (!(<any>window).cordova) {
 			return this.afAuth.auth.signInWithPopup(provider);
 		} else {
